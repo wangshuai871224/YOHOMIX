@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">YOHOMIX</string>
+    <string name="home_name">推荐</string>
+    <string name="magazine_name">杂志</string>
+    <string name="video_name">视频</string>
+    <string name="column_name">栏目</string>
+    <string name="community_name">社区</string>
+    <string name="item_title">·杂志</string>
+    <string name="video_video">VIDEO</string>
+    <string name="video_select">直播</string>
+    <string name="vertical">丨</string>
+    <string name="look_back">回看</string>
+    <string name="boy">YOHO!BOY</string>
+    <string name="girl">YOHO!GIRL</string>
+    <string name="special">SPECIAL</string>
+    <string name="more">More ></string>
+    <string name="set">设置</string>
+    <string name="evaluate">给我评价</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="login">登录</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="my_magazine">我的杂志</string>
+    <string name="my_request">我的提问</string>
+
 </resources>

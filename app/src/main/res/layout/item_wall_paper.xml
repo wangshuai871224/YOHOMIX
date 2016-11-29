@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:orientation="horizontal"
+              >
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            >
+
+            <TextView
+                android:id="@+id/wall_journal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/textSize"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/textSize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/wall_journal"
+                android:layout_toRightOf="@id/wall_journal"
+                android:text="*"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/wall_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/wall_journal"
+                android:layout_below="@id/wall_journal"
+                android:textColor="@color/colorBlack"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/line"
+            android:layout_marginTop="@dimen/magazineTextSize"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginTen"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/wall_picture_one"
+                style="@style/radioButton"/>
+
+            <ImageView
+                android:id="@+id/wall_picture_two"
+                style="@style/radioButton"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTen">
+
+            <ImageView
+                android:id="@+id/wall_picture_three"
+                style="@style/radioButton"/>
+
+            <ImageView
+                android:id="@+id/wall_picture_four"
+                style="@style/radioButton"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

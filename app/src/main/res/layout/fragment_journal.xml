@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackGround"
+              android:orientation="vertical">
+
+    <!--yohoBoy-->
+    <LinearLayout
+        style="@style/weightHeight"
+        android:layout_margin="@dimen/padding"
+        android:layout_weight="1"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+        <!--点击获取boy详情的按钮-->
+        <RelativeLayout
+            style="@style/weightWidth"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorBlack"
+                android:padding="@dimen/padding"
+                android:text="@string/boy"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/magazineTextSize"/>
+
+            <TextView
+                android:id="@+id/boy_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/textSize"
+                android:text="@string/more"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </RelativeLayout>
+        <!--第一张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/boy_image_zero"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/boy_image_zero"
+                    android:layout_alignBottom="@id/boy_image_zero"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/boy_tv_zero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"
+                />
+
+
+        </LinearLayout>
+        <!--第二张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/boy_image_one"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/boy_image_one"
+                    android:layout_alignBottom="@id/boy_image_one"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/boy_tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+        <!--第三张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/boy_image_two"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/boy_image_two"
+                    android:layout_alignBottom="@id/boy_image_two"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/boy_tv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--yohoGril-->
+    <LinearLayout
+        style="@style/weightHeight"
+        android:layout_margin="@dimen/padding"
+        android:layout_weight="1"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <!--点击获取girl详情的按钮-->
+        <RelativeLayout
+            style="@style/weightWidth">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorBlack"
+                android:padding="@dimen/padding"
+                android:text="@string/girl"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/magazineTextSize"/>
+
+
+            <TextView
+                android:id="@+id/girl_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/textSize"
+                android:gravity="center"
+                android:text="@string/more"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+        </RelativeLayout>
+        <!--第一张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/girl_image_zero"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/girl_image_zero"
+                    android:layout_alignBottom="@id/girl_image_zero"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/girl_tv_zero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+        </LinearLayout>
+        <!--第二张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/girl_image_one"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/girl_image_one"
+                    android:layout_alignBottom="@id/girl_image_one"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/girl_tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+        <!--第三张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/girl_image_two"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/girl_image_two"
+                    android:layout_alignBottom="@id/girl_image_two"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/girl_tv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--special-->
+    <LinearLayout
+        style="@style/weightHeight"
+        android:layout_margin="@dimen/padding"
+        android:layout_weight="1"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+        <!--点击获取special详情的按钮-->
+        <RelativeLayout
+            style="@style/weightWidth">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorBlack"
+                android:padding="@dimen/padding"
+                android:text="@string/special"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/magazineTextSize"/>
+
+
+            <TextView
+                android:id="@+id/special_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/textSize"
+                android:gravity="center"
+                android:text="@string/more"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+        </RelativeLayout>
+
+        <!--第一张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/special_image_zero"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/special_image_zero"
+                    android:layout_alignBottom="@id/special_image_zero"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/special_tv_zero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+        <!--第二张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/special_image_one"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/special_image_one"
+                    android:layout_alignBottom="@id/special_image_one"/>
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/special_tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+        <!--第三张图片-->
+        <LinearLayout
+            style="@style/weightWidth">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                >
+                <ImageView
+                    android:id="@+id/special_image_two"
+                    style="@style/magazineHeight"
+                    android:scaleType="fitXY"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/download_magazine_logo"
+                    android:layout_alignRight="@id/special_image_two"
+                    android:layout_alignBottom="@id/special_image_two"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/special_tv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/magazineTextSize"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
