@@ -116,17 +116,17 @@ public class ColumnFragment extends BaseFragment {
     class CircleTransform implements Transformation {
         @Override
         public Bitmap transform(Bitmap source) {
-            int r = Math.min(source.getWidth() / 2, source.getHeight() / 2);
+            int size = Math.min(source.getWidth(), source.getHeight()) / 2;
 
-            int x = (source.getWidth() - r)/ 2;
-            int y = (source.getHeight() - r ) / 2;
+            int x = (source.getWidth() - size)/ 2;
+            int y = (source.getHeight() - size ) / 2;
 
-            Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, r, r);
+            Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
             if (squaredBitmap != source) {
                 source.recycle();
             }
 
-            Bitmap bitmap = Bitmap.createBitmap(r, r, source.getConfig());
+            Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
 
             Canvas canvas = new Canvas(bitmap);
             Paint paint = new Paint();
@@ -134,7 +134,8 @@ public class ColumnFragment extends BaseFragment {
             paint.setShader(shader);
             paint.setAntiAlias(true);
 
-            canvas.drawCircle(x, y, r, paint);
+            float r = size / 2f;
+            canvas.drawCircle(r, r, r, paint);
 
             squaredBitmap.recycle();
             return bitmap;
