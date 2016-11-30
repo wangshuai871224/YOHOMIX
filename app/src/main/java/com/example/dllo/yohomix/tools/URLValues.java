@@ -29,6 +29,9 @@ public class URLValues {
 
     public static final String WALL_PAPER_URL = "http://h5api.myoho.net/index.php?r=Apiemag/getWallpaperListV4&start=0&end=200&device=3&scale=2";
 
+    public static final String COMMUNITY_URL = "http://social.yoho.cn/social?app_version=5.0.4&client_secret=2e515454baad66272556819822cb0bbe&client_type=android&lastedTime=0&limit=10&method=app.social.getHomePagePostList&os_version=android5.1%3AGoogle_Nexus_5_-_5.1.0_-_API_22_-_1080x1920&screen_size=1080x1776&v=7";
+    public static final String COMMUNITY_COVER_URL = "http://social.yoho.cn/social?appType=2&app_version=5.0.4&client_secret=c93f2c29298e27c3abbab38628fab244&client_type=android&method=app.social.getForumCarouselInfo&os_version=android5.1%3AGoogle_Nexus_5_-_5.1.0_-_API_22_-_1080x1920&screen_size=1080x1776&v=7";
+
 
     public static final int RECOMMEND_TYPE_ZERO = 0;
     public static final int RECOMMEND_TYPE_THREE = 3;

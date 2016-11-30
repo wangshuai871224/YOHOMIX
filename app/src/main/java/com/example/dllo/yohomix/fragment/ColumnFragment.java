@@ -65,7 +65,6 @@ public class ColumnFragment extends BaseFragment {
                 mAdapter.setBean(response);
                 mListView.setAdapter(mAdapter);
             }
-
             @Override
             public void errorListener(VolleyError error) {
 
@@ -99,9 +98,11 @@ public class ColumnFragment extends BaseFragment {
                 question.setText(response.getData().getData().get(0).getQuestion());
                 answer.setText(response.getData().getData().get(0).getAnswer());
                 nick.setText(response.getData().getData().get(0).getNick());
+                // 本地画圆
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.static_shoe);
                 CircleDrawable circleDrawable = new CircleDrawable(bitmap);
                 titlePic.setImageDrawable(circleDrawable);
+
                 Picasso.with(getActivity()).load(response.getData().getData().get(0).getHeadpic()).transform(new CircleTransform()).into(headPic);
             }
 
@@ -113,6 +114,7 @@ public class ColumnFragment extends BaseFragment {
         mListView.addHeaderView(view);
     }
 
+    // 网络画圆
     class CircleTransform implements Transformation {
         @Override
         public Bitmap transform(Bitmap source) {

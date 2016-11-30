@@ -19,6 +19,12 @@
             android:text="社区"/>
     </RelativeLayout>
 
-
+    <ListView
+        android:id="@+id/community_list"
+        android:layout_width="match_parent"
+        android:background="@color/backNum"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:scrollbars="none"/>
 
 </LinearLayout>

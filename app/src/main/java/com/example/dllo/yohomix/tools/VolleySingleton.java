@@ -56,6 +56,7 @@ public class VolleySingleton {
                 listener.successListener(response);
             }
         });
+        mRequestQueue.add(gsonRequest);
     }
 
     private <T> void baseGsonPostRequest(String url, Class<T> mClass,

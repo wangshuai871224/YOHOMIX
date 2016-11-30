@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.base.BaseFragment;
 import com.example.dllo.yohomix.bean.YohoBoyBean;
+import com.example.dllo.yohomix.listener.NetListener;
 import com.example.dllo.yohomix.tools.URLValues;
 import com.example.dllo.yohomix.tools.VolleySingleton;
 import com.google.gson.Gson;
@@ -84,70 +85,81 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
 
     private void getSpecialPicture(String url) {
 
-        request = new StringRequest(url, new Response.Listener<String>() {
+        VolleySingleton.MyRequest(url, YohoBoyBean.class, new NetListener<YohoBoyBean>() {
             @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                YohoBoyBean boyBean = gson.fromJson(response, YohoBoyBean.class);
-                Picasso.with(getActivity()).load(boyBean.getData().get(0).getCover()).into(specialImageZero);
-                Picasso.with(getActivity()).load(boyBean.getData().get(1).getCover()).into(specialImageOne);
-                Picasso.with(getActivity()).load(boyBean.getData().get(2).getCover()).into(specialImageTwo);
-                specialTvZero.setText(boyBean.getData().get(0).getJournal());
-                specialTvOne.setText(boyBean.getData().get(1).getJournal());
-                specialTvTwo.setText(boyBean.getData().get(2).getJournal());
+            public void successListener(YohoBoyBean response) {
+                Picasso.with(getActivity()).load(response.getData().get(0).getCover()).into(specialImageZero);
+                Picasso.with(getActivity()).load(response.getData().get(1).getCover()).into(specialImageOne);
+                Picasso.with(getActivity()).load(response.getData().get(2).getCover()).into(specialImageTwo);
+                specialTvZero.setText(response.getData().get(0).getJournal());
+                specialTvOne.setText(response.getData().get(1).getJournal());
+                specialTvTwo.setText(response.getData().get(2).getJournal());
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void errorListener(VolleyError error) {
 
             }
         });
-        mRequestQueue.add(request);
     }
 
     private void getGirlPicture(String url) {
 
-        request = new StringRequest(url, new Response.Listener<String>() {
+        VolleySingleton.MyRequest(url, YohoBoyBean.class, new NetListener<YohoBoyBean>() {
             @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                YohoBoyBean boyBean = gson.fromJson(response, YohoBoyBean.class);
-                Picasso.with(getActivity()).load(boyBean.getData().get(0).getCover()).into(girlImageZero);
-                Picasso.with(getActivity()).load(boyBean.getData().get(1).getCover()).into(girlImageOne);
-                Picasso.with(getActivity()).load(boyBean.getData().get(2).getCover()).into(girlImageTwo);
-                girlTvZero.setText(boyBean.getData().get(0).getJournal());
-                girlTvOne.setText(boyBean.getData().get(1).getJournal());
-                girlTvTwo.setText(boyBean.getData().get(2).getJournal());
+            public void successListener(YohoBoyBean response) {
+                Picasso.with(getActivity()).load(response.getData().get(0).getCover()).into(girlImageZero);
+                Picasso.with(getActivity()).load(response.getData().get(1).getCover()).into(girlImageOne);
+                Picasso.with(getActivity()).load(response.getData().get(2).getCover()).into(girlImageTwo);
+                girlTvZero.setText(response.getData().get(0).getJournal());
+                girlTvOne.setText(response.getData().get(1).getJournal());
+                girlTvTwo.setText(response.getData().get(2).getJournal());
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void errorListener(VolleyError error) {
 
             }
         });
-        mRequestQueue.add(request);
     }
 
     private void getBoyPicture(String url) {
-        request = new StringRequest(url, new Response.Listener<String>() {
+
+        VolleySingleton.MyRequest(url, YohoBoyBean.class, new NetListener<YohoBoyBean>() {
             @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                YohoBoyBean boyBean = gson.fromJson(response, YohoBoyBean.class);
-                Picasso.with(getActivity()).load(boyBean.getData().get(0).getCover()).into(boyImageZero);
-                Picasso.with(getActivity()).load(boyBean.getData().get(1).getCover()).into(boyImageOne);
-                Picasso.with(getActivity()).load(boyBean.getData().get(2).getCover()).into(boyImageTwo);
-                boyTvZero.setText(boyBean.getData().get(0).getJournal());
-                boyTvOne.setText(boyBean.getData().get(1).getJournal());
-                boyTvTwo.setText(boyBean.getData().get(2).getJournal());
+            public void successListener(YohoBoyBean response) {
+                Picasso.with(getActivity()).load(response.getData().get(0).getCover()).into(boyImageZero);
+                Picasso.with(getActivity()).load(response.getData().get(1).getCover()).into(boyImageOne);
+                Picasso.with(getActivity()).load(response.getData().get(2).getCover()).into(boyImageTwo);
+                boyTvZero.setText(response.getData().get(0).getJournal());
+                boyTvOne.setText(response.getData().get(1).getJournal());
+                boyTvTwo.setText(response.getData().get(2).getJournal());
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void errorListener(VolleyError error) {
 
             }
         });
-        mRequestQueue.add(request);
+//        request = new StringRequest(url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Gson gson = new Gson();
+//                YohoBoyBean boyBean = gson.fromJson(response, YohoBoyBean.class);
+//                Picasso.with(getActivity()).load(boyBean.getData().get(0).getCover()).into(boyImageZero);
+//                Picasso.with(getActivity()).load(boyBean.getData().get(1).getCover()).into(boyImageOne);
+//                Picasso.with(getActivity()).load(boyBean.getData().get(2).getCover()).into(boyImageTwo);
+//                boyTvZero.setText(boyBean.getData().get(0).getJournal());
+//                boyTvOne.setText(boyBean.getData().get(1).getJournal());
+//                boyTvTwo.setText(boyBean.getData().get(2).getJournal());
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//        mRequestQueue.add(request);
     }
 
     // 点击进行二级页面请求

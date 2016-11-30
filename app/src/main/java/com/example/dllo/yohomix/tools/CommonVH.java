@@ -1,6 +1,7 @@
 package com.example.dllo.yohomix.tools;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseArray;
@@ -10,7 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.dllo.yohomix.widget.CircleDrawable;
 import com.squareup.picasso.Picasso;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by dllo on 16/11/24.
@@ -73,8 +78,25 @@ public class CommonVH extends RecyclerView.ViewHolder{
         return this;
     }
 
+    public CommonVH setGlideImage(int id, String s){
+        ImageView imageView = getView(id);
+        if (s != null){
+            Glide.with(mContext).load(s).bitmapTransform(new CropCircleTransformation(mContext)).into(imageView);
+        }
+        return this;
+    }
+
+
+
     public View getItemView() {
         return mView;
+    }
+
+    public CommonVH setCircleBitmap(int id, Bitmap bitmap) {
+        ImageView imageView = getView(id);
+        CircleDrawable circleDrawable = new CircleDrawable(bitmap);
+        imageView.setImageDrawable(circleDrawable);
+        return this;
     }
 
 }
