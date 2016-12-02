@@ -97,28 +97,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:gravity="center"
                     android:layout_marginTop="@dimen/loginHeight"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/login_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/user_iamge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/default_head"
-                            android:layout_gravity="center_horizontal"/>
+                            android:layout_gravity="center_horizontal"
+                            android:src="@mipmap/default_head"/>
 
                         <TextView
-                            android:layout_marginTop="@dimen/marginFifteen"
+                            android:id="@+id/login_user"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorWhite"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/marginFifteen"
                             android:text="@string/login"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/loginTextSize"/>
                     </LinearLayout>
 
@@ -128,8 +131,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/loginTop"
-                        android:textColor="@color/colorWhite"
                         android:text="@string/my_collect"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/loginTextSize"/>
 
                     <TextView
@@ -138,18 +141,19 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/textTop"
-                        android:textSize="@dimen/loginTextSize"
+                        android:text="@string/my_magazine"
                         android:textColor="@color/colorWhite"
-                        android:text="@string/my_magazine"/>
+                        android:textSize="@dimen/loginTextSize"/>
+
                     <TextView
                         android:id="@+id/my_request"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/textTop"
+                        android:text="@string/my_request"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/loginTextSize"
-                        android:text="@string/my_request"/>
+                        android:textSize="@dimen/loginTextSize"/>
 
                 </LinearLayout>
 
@@ -219,11 +223,6 @@
 
                 </LinearLayout>
             </RelativeLayout>
-            <!--透明度-->
-            <!--<LinearLayout-->
-            <!--style="@style/weightSet"-->
-            <!--android:layout_weight="1"-->
-            <!--android:alpha="0.3"/>-->
 
         </LinearLayout>
 

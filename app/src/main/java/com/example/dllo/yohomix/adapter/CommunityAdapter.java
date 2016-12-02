@@ -1,11 +1,14 @@
 package com.example.dllo.yohomix.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.bean.CommunityContentBean;
 import com.example.dllo.yohomix.tools.CommonVH;
@@ -55,50 +58,74 @@ public class CommunityAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        urls = new ArrayList<String>();
+
+        urls = new ArrayList<>();
         CommonVH viewHolder = CommonVH.listViewHolder(view, viewGroup, R.layout.item_community);
         int type = mListBeen.get(position).getBlocks().size();
-//        viewHolder.setImage(R.id.head_icon, getSubstring(mListBeen.get(position).getAuthorInfo().getHeadIcon()));
+        viewHolder.setGlideImage(R.id.head_icon, getSubstring(mListBeen.get(position).getAuthorInfo().getHeadIcon()));
+
         if (mListBeen.get(position).getPostsTitle() != null) {
             viewHolder.setText(R.id.post_title, mListBeen.get(position).getPostsTitle());
+        }else {
+
         }
+
         viewHolder.setText(R.id.community_time, String.valueOf(mListBeen.get(position).getCreateTime()));
         viewHolder.setText(R.id.comment, String.valueOf(mListBeen.get(position).getComment()));
         viewHolder.setText(R.id.praise, String.valueOf(mListBeen.get(position).getPraise()));
         viewHolder.setText(R.id.nick_name, mListBeen.get(position).getAuthorInfo().getNickName());
         viewHolder.setText(R.id.forum_name, mListBeen.get(position).getForumName());
 
+
         for (int i = 0; i < type; i++) {
-            if (mListBeen.get(position).getBlocks().get(i).getTemplateKey().equals("text")){
+            if (mListBeen.get(position).getBlocks().get(i).getTemplateKey().equals("text")) {
                 if (mListBeen.get(position).getBlocks().get(i).getContentData() != null) {
                     viewHolder.setText(R.id.content_data, mListBeen.get(position).getBlocks().get(i).getContentData());
+                } else {
+                    viewHolder.getView(R.id.content_data).setVisibility(View.GONE);
                 }
-            }else {
-
+            } else {
                 urls.add(getSubstring(mListBeen.get(position).getBlocks().get(i).getContentData()));
             }
         }
+        ImageView imageView2 = viewHolder.getView(R.id.community_image_two);
+        ImageView imageView3 = viewHolder.getView(R.id.community_image_three);
         if (urls.size() == PIC_SIZE_ONE) {
+            Log.d("aaaa", "第一种" + urls.size());
+
             mOneUrl = urls.get(0);
+
             viewHolder.setImage(R.id.community_image_one, mOneUrl);
-        }else if (urls.size() == PIC_SIZE_TWO) {
+
+            imageView2.setVisibility(View.INVISIBLE);
+            imageView3.setVisibility(View.INVISIBLE);
+            viewHolder.getView(R.id.pic_num_ll).setVisibility(View.GONE);
+
+        } else if (urls.size() == PIC_SIZE_TWO) {
+            Log.d("aaaa", "第二种" + urls.size());
             mOneUrl = urls.get(0);
             mTwoUrl = urls.get(1);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setVisibility(View.INVISIBLE);
+            viewHolder.getView(R.id.pic_num_ll).setVisibility(View.GONE);
             viewHolder.setImage(R.id.community_image_one, mOneUrl);
             viewHolder.setImage(R.id.community_image_two, mTwoUrl);
-        }else {
+        } else {
+            Log.d("aaaa", "第三种" + urls.size());
             mOneUrl = urls.get(0);
             mTwoUrl = urls.get(1);
             mThreeUrl = urls.get(2);
+
             viewHolder.setImage(R.id.community_image_one, mOneUrl);
             viewHolder.setImage(R.id.community_image_two, mTwoUrl);
             viewHolder.setImage(R.id.community_image_three, mThreeUrl);
-
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setVisibility(View.VISIBLE);
             viewHolder.getView(R.id.pic_num_ll).setVisibility(View.VISIBLE);
             if (urls.size() > 3) {
-                TextView textView =  viewHolder.getView(R.id.pic_num);
+                TextView textView = viewHolder.getView(R.id.pic_num);
                 textView.setText(String.valueOf(urls.size()));
-            }else {
+            } else {
                 viewHolder.getView(R.id.pic_num_ll).setVisibility(View.GONE);
             }
         }
@@ -178,7 +205,7 @@ public class CommunityAdapter extends BaseAdapter {
         return viewHolder.getItemView();
     }
 
-    public String getSubstring(String url ) {
+    public String getSubstring(String url) {
         String a = url.substring(0, url.indexOf("?"));
         return a;
     }

@@ -5,9 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.dllo.yohomix.MainActivity;
-import com.example.dllo.yohomix.R;
-
 /**
  * Created by dllo on 16/11/23.
  */
@@ -34,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         return (T) findViewById(id);
     }
 
-    protected void setClick(MainActivity clickListener, View... views) {
+    protected void setClick(View.OnClickListener clickListener, View... views) {
         for (View view : views) {
             view.setOnClickListener(clickListener);
         }

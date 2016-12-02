@@ -1,13 +1,14 @@
 package com.example.dllo.yohomix.fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
+import com.dalong.francyconverflow.FancyCoverFlow;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.adapter.CommunityAdapter;
+import com.example.dllo.yohomix.adapter.MyFancyCoverFlowAdapter;
 import com.example.dllo.yohomix.base.BaseFragment;
 import com.example.dllo.yohomix.bean.CommunityContentBean;
 import com.example.dllo.yohomix.bean.CommunityCoverBean;
@@ -29,8 +30,9 @@ public class CommunityFragment extends BaseFragment{
     private ListView communityList;
     private CommunityAdapter mAdapter;
     private Banner mBanner;
-//    private FancyCoverFlow mFancyCoverFlow;
+    private FancyCoverFlow mFancyCoverFlow;
     private ArrayList<Integer> datas;
+    private MyFancyCoverFlowAdapter mMyFancyCoverFlowAdapter;
 
     @Override
     protected int setLayout() {
@@ -44,7 +46,7 @@ public class CommunityFragment extends BaseFragment{
 
         View viewOne = LayoutInflater.from(getActivity()).inflate(R.layout.community_head_banner, null);
         mBanner = (Banner) viewOne.findViewById(R.id.community_banner);
-//        mFancyCoverFlow = (FancyCoverFlow) viewOne.findViewById(R.id.fancy_cover_flow);
+        mFancyCoverFlow = (FancyCoverFlow) viewOne.findViewById(R.id.fancy_cover_flow);
         communityList.addHeaderView(viewOne);
         datas = new ArrayList<>();
 
@@ -63,18 +65,17 @@ public class CommunityFragment extends BaseFragment{
             @Override
             public void successListener(CommunityCoverBean response) {
 
-//                mMyFancyCoverFlowAdapter = new MyFancyCoverFlowAdapter(getContext());
-//                mMyFancyCoverFlowAdapter.setData(response);
-//                mFancyCoverFlow.setAdapter(mMyFancyCoverFlowAdapter);
-//                mMyFancyCoverFlowAdapter.notifyDataSetChanged();
+                mMyFancyCoverFlowAdapter = new MyFancyCoverFlowAdapter();
+                mMyFancyCoverFlowAdapter.setBean(response);
+                mFancyCoverFlow.setAdapter(mMyFancyCoverFlowAdapter);
 
-//                mFancyCoverFlow.setUnselectedAlpha(1);
-//                mFancyCoverFlow.setUnselectedSaturation(0.5f);
-//                mFancyCoverFlow.setUnselectedScale(0.3f);
-//                mFancyCoverFlow.setSpacing(-50);
-//                mFancyCoverFlow.setMaxRotation(0);
-//                mFancyCoverFlow.setScaleDownGravity(0.5f);
-//                mFancyCoverFlow.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
+                mFancyCoverFlow.setUnselectedAlpha(0.3f);
+                mFancyCoverFlow.setUnselectedSaturation(0.5f);
+                mFancyCoverFlow.setUnselectedScale(0.5f);
+                mFancyCoverFlow.setSpacing(-50);
+                mFancyCoverFlow.setMaxRotation(0);
+                mFancyCoverFlow.setScaleDownGravity(0.5f);
+                mFancyCoverFlow.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
             }
 
             @Override

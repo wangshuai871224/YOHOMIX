@@ -12,20 +12,21 @@
         app:image_scale_type="fit_xy">
     </com.youth.banner.Banner>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#f5f5f5">
 
-        <!--<com.dalong.francyconverflow.FancyCoverFlow-->
-            <!--android:id="@+id/fancy_cover_flow"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="160dp"-->
-            <!--android:layout_marginTop="10dp"/>-->
+        <com.dalong.francyconverflow.FancyCoverFlow
+            android:id="@+id/fancy_cover_flow"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"/>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="15dp"/>-->
-    <!--</LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+    </LinearLayout>
 
 </LinearLayout>

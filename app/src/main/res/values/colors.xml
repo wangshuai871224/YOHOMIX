@@ -9,5 +9,8 @@
     <color name="colorGray">#FF929292</color>
     <color name="colorBackGround">#EFEFEF</color>
     <color name="backNum">#79ffffff</color>
+    <color name="loginBackGround">#FF2C2E2F</color>
+    <color name="editColor">#FF4D4C4C</color>
+    <color name="hintColor">#FF999999</color>
 
 </resources>

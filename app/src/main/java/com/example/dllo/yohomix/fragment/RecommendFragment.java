@@ -1,5 +1,6 @@
 package com.example.dllo.yohomix.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
@@ -10,12 +11,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.dllo.yohomix.R;
+import com.example.dllo.yohomix.SearchActivity;
 import com.example.dllo.yohomix.adapter.BannerAdapter;
 import com.example.dllo.yohomix.adapter.RecommendListAdapter;
 import com.example.dllo.yohomix.base.BaseFragment;
@@ -24,6 +24,7 @@ import com.example.dllo.yohomix.bean.RecommendBean;
 import com.example.dllo.yohomix.listener.NetListener;
 import com.example.dllo.yohomix.tools.URLValues;
 import com.example.dllo.yohomix.tools.VolleySingleton;
+import com.example.dllo.yohomix.LoginActivity;
 import com.example.dllo.yohomix.widget.MyPoint;
 
 import java.util.ArrayList;
@@ -41,14 +42,13 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
     private BannerAdapter bannerAdapter;
     private RecommendListAdapter listAdapter;
 
-    private RequestQueue mRequestQueue;
-    private StringRequest stringRequest;
-    private ArrayList<String> mArrayList;
-
     private Handler mHandler;
     private List<MyPoint> points;
     private LinearLayout pointLl;
     private DrawerLayout mDrawer;
+
+    private TextView myCollect, myMagazine, myRequest, feedBack, evaluate, mySet,loginUser;
+    private Intent mIntent;
 
     @Override
     protected int setLayout() {
@@ -62,33 +62,17 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
         listView = bindView(R.id.recommend_lv);
         bannerAdapter = new BannerAdapter();
         listAdapter = new RecommendListAdapter(getContext());
-        mRequestQueue = Volley.newRequestQueue(getActivity());
 
         // 抽屉的操作
         mDrawer = (DrawerLayout) getActivity().findViewById(R.id.mine_drawer);
         mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        loginUser = (TextView) getActivity().findViewById(R.id.login_user);
 
-        setClick(this, mineSet, searchContent);
 
-        // 添加头布局
-        View headerView = getActivity().getLayoutInflater().inflate(R.layout.carousel_picture, null);
-        viewPager = (ViewPager) headerView.findViewById(R.id.banner_vp);
-        pointLl = (LinearLayout) headerView.findViewById(R.id.point_ll);
-        listView.addHeaderView(headerView);
+        setClick(this, mineSet, searchContent, loginUser);
 
-        // 定时循环
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (viewPager != null && msg.what == 1) {
-                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                }
-                mHandler.sendEmptyMessageDelayed(1, 2000);
-            }
-        };
-
-        mArrayList = new ArrayList<>();
+        addHeadView();
+        timer();
 
     }
 
@@ -96,11 +80,6 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
     protected void initData() {
 
         requestBanner();
-//        for (int i = 0; i < 100; i++) {
-//            mArrayList.add("数据" + i);
-//        }
-//        listAdapter.setArrayList(mArrayList);
-//        listView.setAdapter(listAdapter);
         requestList();
 
         // 图片与点 联动
@@ -126,6 +105,27 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
 
             }
         });
+    }
+    // 添加头布局
+    public void addHeadView() {
+        View headerView = getActivity().getLayoutInflater().inflate(R.layout.carousel_picture, null);
+        viewPager = (ViewPager) headerView.findViewById(R.id.banner_vp);
+        pointLl = (LinearLayout) headerView.findViewById(R.id.point_ll);
+        listView.addHeaderView(headerView);
+    }
+
+    // 定时循环
+    public void timer() {
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (viewPager != null && msg.what == 1) {
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                }
+                mHandler.sendEmptyMessageDelayed(1, 2000);
+            }
+        };
     }
 
     // 请求推荐页面listView数据
@@ -203,10 +203,15 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.search_content:
-
+                mIntent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(mIntent);
                 break;
             case R.id.mine_set:
                 mDrawer.openDrawer(Gravity.LEFT);
+                break;
+            case R.id.login_user:
+                mIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(mIntent);
                 break;
         }
     }
