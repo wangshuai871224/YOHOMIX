@@ -3,29 +3,37 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center"
-              android:orientation="horizontal">
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:layout_margin="@dimen/padding"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height"
             android:layout_weight="1"
             android:padding="@dimen/padding">
 
             <ImageView
-                android:id="@+id/picture_zero"
+                android:id="@+id/search_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"/>
 
             <LinearLayout
-                android:id="@+id/zero_box"
+                android:id="@+id/all_image_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/picture_zero"
-                android:layout_alignRight="@id/picture_zero"
+                android:layout_alignBottom="@id/search_item_image"
+                android:layout_alignRight="@id/search_item_image"
                 android:layout_marginBottom="@dimen/marginTen"
                 android:layout_marginRight="@dimen/marginTen"
-                android:background="@color/backNum"
+                android:background="@color/alpha"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -35,7 +43,7 @@
                     android:src="@mipmap/muti_img"/>
 
                 <TextView
-                    android:id="@+id/zero_context_type"
+                    android:id="@+id/search_item_img_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/marginTen"
@@ -47,13 +55,13 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height"
             android:layout_marginLeft="@dimen/marginTen"
             android:layout_weight="1"
             android:padding="@dimen/padding">
 
             <TextView
-                android:id="@+id/zero_title"
+                android:id="@+id/search_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack"
@@ -65,17 +73,19 @@
                 android:layout_alignParentBottom="true">
 
                 <TextView
-                    android:id="@+id/zero_tag_name"
+                    android:id="@+id/search_item_tag_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color"/>
+                    android:textColor="@color/color"
+                    android:textSize="@dimen/marginTen"/>
 
                 <TextView
-                    android:id="@+id/zero_create_time"
+                    android:id="@+id/search_item_create_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
 
         </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
