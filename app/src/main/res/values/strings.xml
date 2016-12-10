@@ -27,7 +27,10 @@
     <string name="international">International Customer</string>
     <string name="password">密码</string>
     <string name="phone">手机号/邮箱</string>
-
+    <string name="filter_vcode">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="phone_number">手机号</string>
+    <string name="number">+86</string>
+    <string name="SHOW">Yoho!Family账号可登录YohoBuy!有货、Yoho!Now及SHOW</string>
 
 
 </resources>

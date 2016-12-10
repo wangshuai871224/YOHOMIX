@@ -64,8 +64,8 @@
                 <!--自定义组件-->
                 <ImageView
                     android:id="@+id/head_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/textTop"
+                    android:layout_height="@dimen/textTop"
                     android:gravity="center"
                     />
 
@@ -114,13 +114,14 @@
                 <!--自定义组件-->
                 <ImageView
                     android:id="@+id/title_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/textTop"
+                    android:layout_height="@dimen/textTop"
                     android:gravity="center"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
                     android:layout_gravity="center"
                     android:orientation="vertical">
 

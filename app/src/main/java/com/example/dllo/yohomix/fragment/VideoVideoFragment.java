@@ -1,5 +1,8 @@
 package com.example.dllo.yohomix.fragment;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
@@ -24,8 +27,6 @@ public class VideoVideoFragment extends BaseFragment{
 
     private ListView mVideoList;
     private VideoVideoAdapter mVideoVideoAdapter;
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
 
     @Override
     protected int setLayout() {
@@ -36,7 +37,6 @@ public class VideoVideoFragment extends BaseFragment{
     protected void initView() {
         mVideoList = bindView(R.id.video_list);
         mVideoVideoAdapter = new VideoVideoAdapter();
-        mRequestQueue = Volley.newRequestQueue(getActivity());
 
     }
 
@@ -56,5 +56,12 @@ public class VideoVideoFragment extends BaseFragment{
 
             }
         }, map);
+
+        mVideoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
+            }
+        });
     }
 }

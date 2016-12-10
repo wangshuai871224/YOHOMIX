@@ -49,7 +49,6 @@ public class CommunityFragment extends BaseFragment{
         mFancyCoverFlow = (FancyCoverFlow) viewOne.findViewById(R.id.fancy_cover_flow);
         communityList.addHeaderView(viewOne);
         datas = new ArrayList<>();
-
     }
 
     @Override
@@ -69,9 +68,10 @@ public class CommunityFragment extends BaseFragment{
                 mMyFancyCoverFlowAdapter.setBean(response);
                 mFancyCoverFlow.setAdapter(mMyFancyCoverFlowAdapter);
 
+                mMyFancyCoverFlowAdapter.notifyDataSetChanged();
                 mFancyCoverFlow.setUnselectedAlpha(0.3f);
                 mFancyCoverFlow.setUnselectedSaturation(0.5f);
-                mFancyCoverFlow.setUnselectedScale(0.5f);
+                mFancyCoverFlow.setUnselectedScale(0.3f);
                 mFancyCoverFlow.setSpacing(-50);
                 mFancyCoverFlow.setMaxRotation(0);
                 mFancyCoverFlow.setScaleDownGravity(0.5f);

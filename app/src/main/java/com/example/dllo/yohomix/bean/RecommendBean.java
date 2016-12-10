@@ -1,6 +1,7 @@
 package com.example.dllo.yohomix.bean;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by dllo on 16/11/24.
@@ -116,13 +117,24 @@ public class RecommendBean {
             private String updateMd5;
             private int imgNum;
             private int type;
+            private String cover;
+
+            public String getCover() {
+                return cover;
+            }
+
+            public void setCover(String cover) {
+                this.cover = cover;
+            }
+
             /**
              * tag_name : 时尚
              * type : 1
              * tag_id : 2-17
              */
 
-            private List<TagBean> tag;
+
+            private Object tag;
 
             public String getId() {
                 return id;
@@ -260,11 +272,11 @@ public class RecommendBean {
                 this.type = type;
             }
 
-            public List<TagBean> getTag() {
+            public Object getTag() {
                 return tag;
             }
 
-            public void setTag(List<TagBean> tag) {
+            public void setTag(Object tag) {
                 this.tag = tag;
             }
 

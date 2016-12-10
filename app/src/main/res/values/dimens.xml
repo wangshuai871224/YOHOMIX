@@ -23,6 +23,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="register_size">11dp</dimen>
     <dimen name="threeHundredOne">310dp</dimen>
+    <dimen name="result">60dp</dimen>
 
 
 </resources>

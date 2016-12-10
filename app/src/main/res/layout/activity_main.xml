@@ -80,7 +80,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
+        android:descendantFocusability="beforeDescendants"
+        android:layout_gravity="start"
         >
 
         <LinearLayout
@@ -108,14 +109,14 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/user_iamge"
+                            android:id="@+id/user_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:src="@mipmap/default_head"/>
 
                         <TextView
-                            android:id="@+id/login_user"
+                            android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -146,7 +147,7 @@
                         android:textSize="@dimen/loginTextSize"/>
 
                     <TextView
-                        android:id="@+id/my_request"
+                        android:id="@+id/my_quest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -166,6 +167,7 @@
                     android:padding="@dimen/textSize">
 
                     <LinearLayout
+                        android:id="@+id/share"
                         style="@style/minSet">
 
                         <ImageView

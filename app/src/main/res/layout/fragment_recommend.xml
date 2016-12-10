@@ -42,17 +42,31 @@
         </RelativeLayout>
 
         <!--listView-->
-        <android.support.v7.widget.CardView
+        <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@+id/recommend_swipe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="match_parent">
 
-            <ListView
-                android:id="@+id/recommend_lv"
+            <com.example.dllo.yohomix.widget.RefreshHeadView
+                android:id="@id/swipe_refresh_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_height="@dimen/loginTop"/>
+            <ListView
+                android:id="@+id/swipe_target"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/marginTen"
+                android:layout_marginRight="@dimen/marginTen"
+                android:divider="@null"
                 android:scrollbars="none"/>
-        </android.support.v7.widget.CardView>
+            <com.example.dllo.yohomix.widget.LoadFootView
+                android:id="@id/swipe_load_more_footer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/loginTop"
+                android:gravity="center"/>
+        </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
     </LinearLayout>
 
 

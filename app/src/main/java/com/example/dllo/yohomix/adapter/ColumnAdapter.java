@@ -18,6 +18,13 @@ public class ColumnAdapter extends BaseAdapter{
 
     public void setBean(ColumnBean bean) {
         mBean = bean;
+        notifyDataSetChanged();
+    }
+
+    public void addBean(ColumnBean bean){
+        mBean.getData().addAll(bean.getData());
+        notifyDataSetChanged();
+
     }
 
     @Override

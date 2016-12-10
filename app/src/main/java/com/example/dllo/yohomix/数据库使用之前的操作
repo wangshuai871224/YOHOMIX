@@ -1,0 +1,16 @@
+一:
+1, 在build.gradle(Module: app)->dependencies->加入
+   compile 'org.greenrobot:greendao:3.2.0'
+2, 在apply plugin: 'com.android.application'下面加入->
+   apply plugin: 'org.greenrobot.greendao'
+3, 在android中加入greendao{
+                      schemaVersion 1
+                      targetGenDir 'src/main/java'
+                  }
+二:
+1, 在build.gradle(Project: XXXX)中的dependencies->加入
+   classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+三, 写类 你想要添加数据库的类  不用写构造, setget方法
+四, 然后编译, 完成后 点击build->Make Project  等待.....
+
+

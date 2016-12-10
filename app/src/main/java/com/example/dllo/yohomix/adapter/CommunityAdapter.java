@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.bean.CommunityContentBean;
 import com.example.dllo.yohomix.tools.CommonVH;
+import com.example.dllo.yohomix.tools.TimeInstead;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +72,8 @@ public class CommunityAdapter extends BaseAdapter {
 
         }
 
-        viewHolder.setText(R.id.community_time, String.valueOf(mListBeen.get(position).getCreateTime()));
+        String time = TimeInstead.timeLong(mListBeen.get(position).getCreateTime());
+        viewHolder.setText(R.id.community_time, time);
         viewHolder.setText(R.id.comment, String.valueOf(mListBeen.get(position).getComment()));
         viewHolder.setText(R.id.praise, String.valueOf(mListBeen.get(position).getPraise()));
         viewHolder.setText(R.id.nick_name, mListBeen.get(position).getAuthorInfo().getNickName());

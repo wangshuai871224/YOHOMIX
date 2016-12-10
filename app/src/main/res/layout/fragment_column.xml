@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackGround">
-
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackGround"
+              android:orientation="vertical">
     <RelativeLayout
         style="@style/title"
         android:gravity="center"
@@ -14,18 +13,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/textSize"
+            android:text="栏目"
             android:textColor="@color/colorBlack"
-            android:text="栏目"/>
+            android:textSize="@dimen/textSize"/>
     </RelativeLayout>
-
-    <ListView
-        android:id="@+id/column_list"
+    
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@android:color/transparent"
-        android:layout_marginLeft="@dimen/marginTen"
-        android:layout_marginRight="@dimen/marginTen"
-        android:scrollbars="none"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--id必须用下面固定3个id, 因为添加依赖-->
+        <com.example.dllo.yohomix.widget.RefreshHeadView
+            android:id="@id/swipe_refresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/loginTop"
+            android:gravity="center"/>
+
+        <ListView
+            android:id="@id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/marginTen"
+            android:layout_marginRight="@dimen/marginTen"
+            android:divider="@android:color/transparent"
+            android:scrollbars="none"/>
+
+        <com.example.dllo.yohomix.widget.LoadFootView
+            android:id="@id/swipe_load_more_footer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/loginTop"
+            android:gravity="center"
+            />
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
 
 </LinearLayout>

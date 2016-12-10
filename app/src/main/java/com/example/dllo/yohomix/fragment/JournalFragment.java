@@ -1,8 +1,14 @@
 package com.example.dllo.yohomix.fragment;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -11,8 +17,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.base.BaseFragment;
+import com.example.dllo.yohomix.bean.SearchItemBean;
 import com.example.dllo.yohomix.bean.YohoBoyBean;
 import com.example.dllo.yohomix.listener.NetListener;
+import com.example.dllo.yohomix.tools.DBTool;
 import com.example.dllo.yohomix.tools.URLValues;
 import com.example.dllo.yohomix.tools.VolleySingleton;
 import com.google.gson.Gson;
@@ -25,13 +33,18 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
 
     private ImageView boyImageZero,girlImageZero,specialImageZero,
                       boyImageOne,girlImageOne,specialImageOne,
-                      boyImageTwo,girlImageTwo,specialImageTwo;
+                      boyImageTwo,girlImageTwo,specialImageTwo, popImage, downLoadClose;
     private TextView boyTvZero,girlTvZero,specialTvZero,
                      boyTvOne,girlTvOne,specialTvOne,
-                     boyTvTwo,girlTvTwo,specialTvTwo;
+                     boyTvTwo,girlTvTwo,specialTvTwo, picContent, downLoad;
     private TextView boyMore, girlMore, specialMore;
     private RequestQueue mRequestQueue;
     private StringRequest request;
+    private PopupWindow mPopupWindow;
+    private RelativeLayout popMiss;
+    YohoBoyBean boyBean, girlBean, specialBean;
+    private String imgUrl , content;
+    private SearchItemBean mBean;
 
     @Override
     protected int setLayout() {
@@ -71,7 +84,9 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
 
         mRequestQueue = Volley.newRequestQueue(getActivity());
 
-        setClick(this, boyMore, girlMore, specialMore);
+        setClick(this, boyMore, girlMore, specialMore, boyImageZero,boyImageOne,boyImageTwo
+                   , girlImageZero,girlImageOne,girlImageTwo
+                   , specialImageZero,specialImageOne,specialImageTwo);
 
     }
 
@@ -94,6 +109,7 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
                 specialTvZero.setText(response.getData().get(0).getJournal());
                 specialTvOne.setText(response.getData().get(1).getJournal());
                 specialTvTwo.setText(response.getData().get(2).getJournal());
+                specialBean = response;
             }
 
             @Override
@@ -114,6 +130,7 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
                 girlTvZero.setText(response.getData().get(0).getJournal());
                 girlTvOne.setText(response.getData().get(1).getJournal());
                 girlTvTwo.setText(response.getData().get(2).getJournal());
+                girlBean = response;
             }
 
             @Override
@@ -134,6 +151,7 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
                 boyTvZero.setText(response.getData().get(0).getJournal());
                 boyTvOne.setText(response.getData().get(1).getJournal());
                 boyTvTwo.setText(response.getData().get(2).getJournal());
+                boyBean = response;
             }
 
             @Override
@@ -172,7 +190,89 @@ public class JournalFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.special_more:
                 break;
+            case R.id.boy_image_zero:
+                imgUrl = boyBean.getData().get(0).getCover();
+                content = boyBean.getData().get(0).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.boy_image_one:
+                imgUrl = boyBean.getData().get(1).getCover();
+                content = boyBean.getData().get(1).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.boy_image_two:
+                imgUrl = boyBean.getData().get(2).getCover();
+                content = boyBean.getData().get(2).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.girl_image_zero:
+                imgUrl = girlBean.getData().get(0).getCover();
+                content = girlBean.getData().get(0).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.girl_image_one:
+                imgUrl = girlBean.getData().get(1).getCover();
+                content = girlBean.getData().get(1).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.girl_image_two:
+                imgUrl = girlBean.getData().get(2).getCover();
+                content = girlBean.getData().get(2).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.special_image_zero:
+                imgUrl = specialBean.getData().get(0).getCover();
+                content = specialBean.getData().get(0).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.special_image_one:
+                imgUrl = specialBean.getData().get(1).getCover();
+                content = specialBean.getData().get(1).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.special_image_two:
+                imgUrl = specialBean.getData().get(2).getCover();
+                content = specialBean.getData().get(2).getJournal();
+                popWindow(imgUrl, content);
+                break;
+            case R.id.download_close:
+                if (mPopupWindow!= null && mPopupWindow.isShowing()) {
+                    mPopupWindow.dismiss();
+                }
+                break;
+            case R.id.down_load:
+                DBTool.getInstance().insert(mBean);
+                break;
+            case R.id.pop_wind:
+                if (mPopupWindow!= null && mPopupWindow.isShowing()) {
+                    mPopupWindow.dismiss();
+                }
+                break;
         }
+    }
+    // 点击图片显示,并提示下载
+    public void popWindow(String url, String text) {
+        mPopupWindow = new PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.magazine_pic, null);
+        popImage = (ImageView) view.findViewById(R.id.pop_image);
+        downLoad = (TextView) view.findViewById(R.id.down_load);
+        downLoadClose = (ImageView) view.findViewById(R.id.download_close);
+        picContent = (TextView) view.findViewById(R.id.pic_content);
+        popMiss = (RelativeLayout) view.findViewById(R.id.pop_wind);
+
+        Picasso.with(getActivity()).load(url).into(popImage);
+        picContent.setText(text);
+
+        downLoad.setOnClickListener(this);
+        downLoadClose.setOnClickListener(this);
+        popMiss.setOnClickListener(this);
+
+        mBean = new SearchItemBean();
+        mBean.setUrl(url);
+        mBean.setBody(text);
+
+        mPopupWindow.setContentView(view);
+        mPopupWindow.showAtLocation(view, Gravity.BOTTOM, 0 , 0);
     }
 
 

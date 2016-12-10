@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+    <WebView
+        android:id="@+id/column_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--按钮-->
+    <RelativeLayout
+        android:id="@+id/web_view_head"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorWhite"
+        android:padding="@dimen/marginTen">
+
+        <ImageView
+            android:id="@+id/column_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/padding"
+            android:src="@mipmap/common_black_back"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/white_load_0000"/>
+
+        <ImageView
+            android:id="@+id/column_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/padding"
+            android:src="@mipmap/icon_share"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/title"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding">
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/gray">
+
+            <EditText
+                android:id="@+id/column_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="写评论"
+                android:textSize="@dimen/marginTen"
+                android:lines="1"
+                android:padding="@dimen/padding"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/comment_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/marginTen"
+            android:src="@mipmap/community_home_posts_comment_bg"/>
+
+        <ImageView
+            android:id="@+id/collect_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/textSize"
+            android:src="@mipmap/heart_icon"/>
+
+        <TextView
+            android:id="@+id/column_collect_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

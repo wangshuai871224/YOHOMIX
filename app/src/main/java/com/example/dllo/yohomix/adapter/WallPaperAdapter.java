@@ -17,6 +17,7 @@ import java.util.List;
  */
 
 public class WallPaperAdapter extends BaseAdapter{
+
     private WallPaperBean mBean;
     private List<WallPaperBean.DataBean.WallpaperListBean> mListBeen;
 
@@ -50,7 +51,9 @@ public class WallPaperAdapter extends BaseAdapter{
         viewHolder.setImage(R.id.wall_picture_one,mListBeen.get(position).getImages().get(0).getThumbImage());
         viewHolder.setImage(R.id.wall_picture_two,mListBeen.get(position).getImages().get(1).getThumbImage());
         viewHolder.setImage(R.id.wall_picture_three,mListBeen.get(position).getImages().get(2).getThumbImage());
-        viewHolder.setImage(R.id.wall_picture_four,mListBeen.get(position).getImages().get(3).getThumbImage());
+        if (mListBeen.get(position).getImages().size() == 4) {
+            viewHolder.setImage(R.id.wall_picture_four, mListBeen.get(position).getImages().get(3).getThumbImage());
+        }
 
         return viewHolder.getItemView();
     }

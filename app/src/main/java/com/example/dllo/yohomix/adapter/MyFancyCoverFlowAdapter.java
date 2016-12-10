@@ -38,8 +38,8 @@ public class MyFancyCoverFlowAdapter extends FancyCoverFlowAdapter{
         if (reusableView == null) {
             reusableView = LayoutInflater.from(context).inflate(R.layout.item_head_hl, parent, false);
             WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-            int width = wm.getDefaultDisplay().getWidth()+600;
-            reusableView.setLayoutParams(new FancyCoverFlow.LayoutParams(width * 2 / 5 ,FancyCoverFlow.LayoutParams.WRAP_CONTENT));
+            int width = wm.getDefaultDisplay().getWidth()+ 600;
+            reusableView.setLayoutParams(new FancyCoverFlow.LayoutParams(width / 3 ,FancyCoverFlow.LayoutParams.WRAP_CONTENT));
             viewHolder = new ViewHolder(reusableView);
             reusableView.setTag(viewHolder);
         }else {

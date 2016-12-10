@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/pop_wind"
+                android:background="@color/alpha"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/pop_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/loginTextSize"/>
+
+        <ImageView
+            android:id="@+id/download_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/loginTextSize"
+            android:src="@mipmap/close_download_magazine"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/marginTen"
+        android:background="@color/colorBlack"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pic_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/marginTen"
+            android:textColor="@color/colorWhite"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/marginTen"
+            android:layout_gravity="center"
+            android:background="@drawable/down_load">
+
+            <TextView
+                android:id="@+id/down_load"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:text="立即下载"
+                android:textSize="10dp"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

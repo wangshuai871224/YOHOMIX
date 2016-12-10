@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+    <ListView
+        android:id="@+id/column_two_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackGround"
+        android:scrollbars="none"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#00ffffff"
+        android:layout_height="@dimen/marginTop"
+        android:padding="@dimen/marginTen">
+
+        <ImageView
+            android:id="@+id/column_two_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/common_back_white"/>
+
+        <TextView
+            android:id="@+id/column_two_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"/>
+    </RelativeLayout>
+
+</RelativeLayout>
