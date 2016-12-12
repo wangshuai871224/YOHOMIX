@@ -1,5 +1,6 @@
 package com.example.dllo.yohomix.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputType;
@@ -16,6 +17,15 @@ import com.example.dllo.yohomix.activity.LoginActivity;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.base.BaseFragment;
 import com.wevey.selector.dialog.NormalAlertDialog;
+
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.tencent.qq.QQ;
+
 /**
  * Created by dllo on 16/12/6.
  */
@@ -29,6 +39,11 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
     private TextView familyLogin, registerLogin;
     private boolean show = false;
     private NormalAlertDialog mDialog;
+
+    private String name;
+    private String icon;
+    public static final int RESULT = 0;
+    private PlatformActionListener platformActionListener;
 
 
     @Override
@@ -114,7 +129,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 clickIcon.setVisibility(View.VISIBLE);
                 break;
             case R.id.qq_icon:
-
+                qqLogin();
                 break;
             case R.id.click_more:
                 qqIcon.setVisibility(View.VISIBLE);
@@ -154,6 +169,47 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
 
         }
+    }
+
+    private void qqLogin() {
+        Platform qq = ShareSDK.getPlatform(QQ.NAME);
+
+        qq.authorize();//单独授权,OnComplete返回的hashmap是空的
+//                qq.showUser(null);//授权并获取用户信息
+
+        // 回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
+        qq.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                PlatformDb platformDb = platform.getDb();
+                name = platformDb.getUserName();
+                icon = platformDb.getUserIcon();
+                Intent intent = new Intent();
+                intent.putExtra("name", name);
+                intent.putExtra("icon", icon);
+                getActivity().setResult(RESULT, intent);
+                getActivity().finish();
+//                        getActivity().runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                userName.setText(name);
+//                                Picasso.with(getActivity()).load(icon).into(userIcon);
+//                                getActivity().finish();
+//                            }
+//                        });
+
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+
+            }
+        });
     }
 
     private void showDialog() {

@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.bumptech.glide.Glide;
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.activity.SearchActivity;
 import com.example.dllo.yohomix.adapter.BannerAdapter;
@@ -44,6 +45,7 @@ import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.tencent.qq.QQ;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by dllo on 16/11/23.
@@ -69,14 +71,12 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
     private int num = 0;
     private int q = 1;
     private RecommendBean mBean;
-
     private TextView myCollect, myMagazine, feedBack, evaluate, mySet, userName, myQuest;
     private ImageView userIcon;
     private Intent mIntent;
 
     private String name;
     private String icon;
-    private TextView myRequest;
     public static final int RESULT = 0;
     private PlatformActionListener platformActionListener;
 
@@ -97,12 +97,12 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
         // 抽屉的操作
         mDrawer = (DrawerLayout) getActivity().findViewById(R.id.mine_drawer);
         mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        userName = (TextView) getActivity().findViewById(R.id.user_name);
-        userIcon = (ImageView) getActivity().findViewById(R.id.user_image);
-        myQuest = (TextView) getActivity().findViewById(R.id.my_quest);
+//        userName = (TextView) getActivity().findViewById(R.id.user_name);
+//        userIcon = (ImageView) getActivity().findViewById(R.id.user_image);
+//        myQuest = (TextView) getActivity().findViewById(R.id.my_quest);
 
 
-        setClick(this, mineSet, searchContent, userName, userIcon, myQuest);
+        setClick(this, mineSet, searchContent);
         mSwipeToLoadLayout.setOnRefreshListener(this);
         mSwipeToLoadLayout.setOnLoadMoreListener(this);
 
@@ -113,7 +113,6 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected void initData() {
-        login();
         recommendMap();
         requestBanner();
         requestList();
@@ -275,134 +274,33 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
             case R.id.mine_set:
                 mDrawer.openDrawer(Gravity.LEFT);
                 break;
-            case R.id.user_name:
-                mIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(mIntent);
-                break;
-            case R.id.user_image:
-                Platform qq = ShareSDK.getPlatform(QQ.NAME);
-
-                qq.authorize();//单独授权,OnComplete返回的hashmap是空的
-                qq.showUser(null);//授权并获取用户信息
-
-                // 回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
-                qq.setPlatformActionListener(new PlatformActionListener() {
-                    @Override
-                    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                        PlatformDb platformDb = platform.getDb();
-                        final String name = platformDb.getUserName();
-                        final String icon = platformDb.getUserIcon();
-                        Intent intent = new Intent();
-                        intent.putExtra("name", name);
-                        intent.putExtra("icon", icon);
-//                        getActivity().setResult(RESULT, intent);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                userName.setText(name);
-                                Picasso.with(getActivity()).load(icon).into(userIcon);
-                            }
-                        });
-
-
-                    }
-
-                    @Override
-                    public void onError(Platform platform, int i, Throwable throwable) {
-
-                    }
-
-                    @Override
-                    public void onCancel(Platform platform, int i) {
-
-                    }
-                });
-
-                break;
-            case R.id.my_quest:
-                Platform platform = ShareSDK.getPlatform(QQ.NAME);
-                if (platform.isAuthValid()) {
-                    platform.removeAccount(true);
-                }
-                else {
-                    Toast.makeText(getActivity(), "退出登录", Toast.LENGTH_SHORT).show();
-                }
-                platform.setPlatformActionListener(platformActionListener);
-                // authorize与showUser单独调用一个即可
-                platform.authorize();//单独授权，OnComplete返回的hashmap是空的
+//            case R.id.user_name:
+//                mIntent = new Intent(getActivity(), LoginActivity.class);
+//                getActivity().startActivityForResult(mIntent, 1);
+//                break;
+//
+//            case R.id.user_image:
+//                mIntent = new Intent(getActivity(), LoginActivity.class);
+//                getActivity().startActivityForResult(mIntent, 1);
+//                break;
+//
+//            case R.id.my_quest:
+//                Platform platform = ShareSDK.getPlatform(QQ.NAME);
+//                if (platform.isAuthValid()) {
+//                    // isValid和removeAccount不开启线程，会直接返回。
+//                    platform.removeAccount(true);// 移除授权
+//                } else {
+//                    Toast.makeText(getActivity(), "退出登录", Toast.LENGTH_SHORT).show();
+//                }
+//                // 实现接口回调(login中的)
+//                platform.setPlatformActionListener(platformActionListener);
+//                // authorize与showUser单独调用一个即可
+//                platform.authorize();//单独授权，OnComplete返回的hashmap是空的
 //                platform.showUser(null);//授权并获取用户信息
-                // isValid和removeAccount不开启线程，会直接返回。
-                // qq.removeAccount(true);
-                getActivity().setResult(-1);
-                break;
+//                getActivity().setResult(-1);
+//                break;
         }
     }
-    private void login() {
-        Platform qq = ShareSDK.getPlatform(QQ.NAME);
-        //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
-
-                try {
-                    PlatformDb platformDb = qq.getDb();
-                    name = platformDb.getUserName();
-                    icon = platformDb.getUserIcon();
-
-                    if (!TextUtils.isEmpty(name)) {
-                        userName.setText(name);
-                        Picasso.with(getActivity()).load(icon).into(userIcon);
-                    }
-                } catch (NullPointerException e) {
-
-                }
-
-        platformActionListener = new PlatformActionListener() {
-
-            @Override
-            public void onError(Platform arg0, int arg1, Throwable arg2) {
-                arg2.printStackTrace();
-            }
-
-            @Override
-            public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
-                //输出所有授权信息
-                arg0.getDb().exportData();
-                userName.setText("登录");
-                userIcon.setImageResource(R.mipmap.default_head);
-            }
-
-            @Override
-            public void onCancel(Platform arg0, int arg1) {
-
-            }
-        };
-        //authorize与showUser单独调用一个即可
-//        qq.authorize();//单独授权,OnComplete返回的hashmap是空的
-//        qq.showUser(null);//授权并获取用户信息
-        // 移除授权
-        // qq.removeAccount(true);
-    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (data == null) {
-//            // 退出登录
-//            userName.setText("登录");
-//            userIcon.setImageResource(R.mipmap.default_head);
-//            return;
-//        }
-//
-//        if (requestCode == 1 && RESULT == resultCode && data != null) {
-//            // 登入成功
-//            name = data.getStringExtra("name");
-//            icon = data.getStringExtra("icon");
-//
-//            userName.setText(name);
-//            Picasso.with(getActivity()).load(icon).into(userIcon);
-//
-//        }
-//
-//    }
 
     // 下啦刷新
     @Override
@@ -433,7 +331,7 @@ public class RecommendFragment extends BaseFragment implements View.OnClickListe
                 VolleySingleton.MyRequest(URLValues.RECOMMEND_URL, RecommendBean.class, new NetListener<RecommendBean>() {
                     @Override
                     public void successListener(RecommendBean response) {
-                          listAdapter.addBean(response);
+                        listAdapter.addBean(response);
                     }
 
                     @Override

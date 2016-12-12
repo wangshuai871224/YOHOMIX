@@ -30,6 +30,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
     private ImageView commentImg, comeBackImg, columnShare, collectImg;
     private EditText commentEdit;
     private TextView collectNum;
+    private boolean collect = false;
 
     @Override
     protected int setLayout() {
@@ -72,6 +73,9 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.column_share:
                 showShare();
+                break;
+            case R.id.collect_image:
+
                 break;
         }
     }

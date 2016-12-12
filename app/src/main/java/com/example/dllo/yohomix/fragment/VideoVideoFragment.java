@@ -27,6 +27,7 @@ public class VideoVideoFragment extends BaseFragment{
 
     private ListView mVideoList;
     private VideoVideoAdapter mVideoVideoAdapter;
+    private VideoBean bean;
 
     @Override
     protected int setLayout() {
@@ -47,6 +48,7 @@ public class VideoVideoFragment extends BaseFragment{
         VolleySingleton.MyRequest(URLValues.VIDEO_URL, VideoBean.class, new NetListener<VideoBean>() {
             @Override
             public void successListener(VideoBean response) {
+                bean = response;
                 mVideoVideoAdapter.setVideoBean(response);
                 mVideoList.setAdapter(mVideoVideoAdapter);
             }
@@ -61,6 +63,9 @@ public class VideoVideoFragment extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), VideoPlayActivity.class);
+                intent.putExtra("video", bean.getData().getContent().get(i).getId());
+                intent.putExtra("cidvideo", bean.getData().getContent().get(i).getCid());
+                getActivity().startActivity(intent);
             }
         });
     }

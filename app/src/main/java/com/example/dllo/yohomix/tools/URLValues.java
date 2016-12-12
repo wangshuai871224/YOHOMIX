@@ -38,6 +38,10 @@ public class URLValues {
     public static final String COLUMN_TWO_URL="http://new.yohoboys.com/yohoboyins/v5/channel/lookbook";
     public static final String COLUMN_TWO_VALUE ="%7B%22limit%22%3A20%2C%22id%22%3A%2240%22%2C%22platform%22%3A%224%22%2C%22page%22%3A1%2C%22curVersion%22%3A%225.0.5%22%2C%22authInfo%22%3A%7B%22udid%22%3A%22000000000000000b667280949982902%22%7D%2C%22locale%22%3A%22zh-Hans%22%2C%22udid%22%3A%22000000000000000b667280949982902%22%2C%22language%22%3A%22zh-Hans%22%7D&";
 
+    public static final String VIDEO_VIDEO_URL = "http://new.yohoboys.com/yohoboyins/v5/channel/getContentDetail";
+
+    public static final String START_PAGE_URL = "http://new.yohoboys.com/yohoboyins/v5/common/getSplashScreen";
+
     public static final int RECOMMEND_TYPE_ZERO = 0;
     public static final int RECOMMEND_TYPE_THREE = 3;
     public static final int RECOMMEND_TYPE_TWO = 2;
