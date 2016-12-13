@@ -1,36 +1,33 @@
 package com.example.dllo.yohomix.activity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.yohomix.R;
 import com.example.dllo.yohomix.base.BaseActivity;
+import com.example.dllo.yohomix.bean.CollectWebBean;
+import com.example.dllo.yohomix.tools.CommonDBTool;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-
-import static android.R.attr.path;
 
 /**
  * Created by dllo on 16/12/10.
  */
 public class WebViewActivity extends BaseActivity implements View.OnClickListener{
 
-    private String url;
+    private String url, collectTitle, collectTag, collectImgUrl, collectTime;
     private WebView mWebView;
     private ImageView commentImg, comeBackImg, columnShare, collectImg;
     private EditText commentEdit;
     private TextView collectNum;
     private boolean collect = false;
+    private boolean mExist;
 
     @Override
     protected int setLayout() {
@@ -44,6 +41,10 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
         findId();
         Intent intent = getIntent();
         url = intent.getStringExtra("webview");
+        collectTitle = intent.getStringExtra("title");
+        collectTime = intent.getStringExtra("createtime");
+        collectTag = intent.getStringExtra("tagname");
+        collectImgUrl = intent.getStringExtra("imgurl");
 
     }
 
@@ -61,9 +62,17 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
+
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.loadUrl(url);
+        mExist = CommonDBTool.getInstance().isHaveTitle(collectTitle);
+        if (mExist) {
+            collectImg.setImageResource(R.mipmap.heart_icon_h);
+        }else {
+            collectImg.setImageResource(R.mipmap.heart_icon);
+        }
+
     }
 
     @Override
@@ -75,7 +84,29 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
                 showShare();
                 break;
             case R.id.collect_image:
+                CollectWebBean bean = new CollectWebBean();
+                bean.setWebUrl(url);
+                bean.setImgUrl(collectImgUrl);
+                bean.setTagName(collectTag);
+                bean.setTime(collectTime);
+                bean.setTitle(collectTitle);
+                bean.setType(1);
 
+                collect = !collect;
+
+                if (collect) {
+                    collectImg.setImageResource(R.mipmap.heart_icon_h);
+                    CommonDBTool.getInstance().insertWebBean(bean);
+                }else {
+                    collectImg.setImageResource(R.mipmap.heart_icon);
+                    if (CommonDBTool.getInstance().isSave(bean)){
+                        CommonDBTool.getInstance().deleteByTitle(bean.getTitle());
+                    }
+                }
+
+                break;
+            case R.id.column_back:
+                finish();
                 break;
         }
     }

@@ -131,8 +131,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.user_image:
-                mIntent = new Intent(this, LoginActivity.class);
-                startActivityForResult(mIntent, REQUEST_CODE);
+                if (!TextUtils.isEmpty(name)) {
+                    mIntent = new Intent(this, BackActivity.class);
+                    startActivityForResult(mIntent, REQUEST_CODE);
+                }else {
+                    mIntent = new Intent(this, LoginActivity.class);
+                    startActivityForResult(mIntent, REQUEST_CODE);
+                }
                 break;
 
             case R.id.my_quest:
@@ -140,14 +145,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (platform.isAuthValid()) {
                     // isValid和removeAccount不开启线程，会直接返回。
                     platform.removeAccount(true);// 移除授权
+                    userName.setText("登录");
+                    userIcon.setImageResource(R.mipmap.default_head);
+                    name = null;
                 } else {
                     Toast.makeText(this, "退出登录", Toast.LENGTH_SHORT).show();
                 }
                 // 实现接口回调(login中的)
                 platform.setPlatformActionListener(platformActionListener);
                 // authorize与showUser单独调用一个即可
-                platform.authorize();//单独授权，OnComplete返回的hashmap是空的
-                platform.showUser(null);//授权并获取用户信息
+//                platform.authorize();//单独授权，OnComplete返回的hashmap是空的
+//                platform.showUser(null);//授权并获取用户信息
                 setResult(-1);
                 break;
 
@@ -164,6 +172,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             // 退出登录
             userName.setText("登录");
             userIcon.setImageResource(R.mipmap.default_head);
+            name= "";
+            icon= "";
             return;
         }
 
@@ -171,7 +181,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             // 登入成功
             name = data.getStringExtra("name");
             icon = data.getStringExtra("icon");
-
             userName.setText(name);
             Glide.with(this).load(icon).bitmapTransform(new CropCircleTransformation(this)).into(userIcon);
 

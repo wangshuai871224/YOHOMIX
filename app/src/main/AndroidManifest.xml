@@ -31,6 +31,7 @@
         <activity android:name=".activity.WebViewActivity"/>
         <activity android:name=".fragment.VideoPlayActivity"/>
         <activity android:name=".StartActivity"/>
+        <activity android:name=".BackActivity"/>
 
         <activity android:name=".WelcomeActivity">
             <intent-filter>

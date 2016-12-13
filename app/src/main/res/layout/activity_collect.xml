@@ -13,6 +13,7 @@
         android:padding="@dimen/marginTen">
 
         <ImageView
+            android:id="@+id/collect_quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -26,13 +27,14 @@
             android:textColor="@color/colorBlack"/>
 
         <TextView
+            android:id="@+id/my_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="编辑"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/marginTen"/>
+            android:textSize="@dimen/loginTextSize"/>
     </RelativeLayout>
 
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
@@ -46,7 +48,8 @@
         <ListView
             android:id="@id/swipe_target"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/marginTen"/>
         <com.example.dllo.yohomix.widget.LoadFootView
             android:id="@id/swipe_load_more_footer"
             android:layout_width="match_parent"

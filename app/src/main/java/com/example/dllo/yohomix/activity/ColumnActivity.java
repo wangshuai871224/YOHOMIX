@@ -133,6 +133,10 @@ public class ColumnActivity extends BaseActivity {
                 Intent intent = new Intent(ColumnActivity.this, WebViewActivity.class);
                 if (i - 1 >= 0) {
                     intent.putExtra("webview", mBean.getData().getContent().get(i - 1).getPublishURL());
+                    intent.putExtra("title", mBean.getData().getContent().get(i - 1).getTitle());
+                    intent.putExtra("createtime", mBean.getData().getContent().get(i - 1).getCreate_time());
+                    intent.putExtra("tagname", mBean.getData().getContent().get(i - 1).getTag().get(0).getTag_name());
+                    intent.putExtra("imgurl", mBean.getData().getContent().get(i - 1).getImage());
                 }
                 startActivity(intent);
             }
